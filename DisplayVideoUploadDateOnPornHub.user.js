@@ -13,9 +13,17 @@
 (function () {
     'use strict';
 
+
     window.onload = function () {
         setInterval(DisplayVideoUploadDateOnPornhub, 2000);
         DisplayVideoUploadDateOnPornhub();
+
+        var customUserAgent = 'Mozilla/5.0 (MSIE 10.0; Windows NT 6.1; Trident/5.0)';
+        //修改后的userAgent            
+        Object.defineProperty(navigator, 'userAgent', {
+            value: customUserAgent,
+            writable: false
+        });
     }
 
     function DisplayVideoUploadDateOnPornhub() {
