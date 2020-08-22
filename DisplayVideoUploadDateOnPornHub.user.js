@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DisplayVideoUploadDateOnPornHub
 // @namespace    http://tampermonkey.net/
-// @version      1.1
+// @version      1.2
 // @description  Display the Upload date of the video on the video preview page.
 // @author       hugepower
 // @match        https://*.pornhub.com/*
