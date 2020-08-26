@@ -27,9 +27,11 @@
             waterfall.setAttribute('style','text-align:center');
             for(var i = thumbnailList.length - 1; i >= 0; i--){
                 var img = document.createElement('img');
+                var br = document.createElement('br');
                 img.src = thumbnailList[i].href;
                 img.className = "Thumbnail";
-                waterfall.insertBefore(img+'<br>',thumbnailList[i]);
+                waterfall.insertBefore(img,thumbnailList[i]);
+                waterfall.insertBefore(br,thumbnailList[i]);
                 waterfall.removeChild(thumbnailList[i]);
             }
         }
