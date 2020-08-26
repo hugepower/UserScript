@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JavbusExpandThumbnail
 // @namespace    http://tampermonkey.net/
-// @version      1.1
+// @version      1.2
 // @description  Expand all thumbnails.
 // @author       hugepower
 // @match        https://www.javbus.com/*
