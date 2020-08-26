@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JavbusExpandThumbnail
 // @namespace    http://tampermonkey.net/
-// @version      1.2
+// @version      1.3
 // @description  Expand all thumbnails.
 // @author       hugepower
 // @match        https://www.javbus.com/*
@@ -12,6 +12,13 @@
 
 (function() {
     'use strict';
+
+    function javbusRemoveAds(){
+        var adList = document.querySelectorAll('[class="ad-list"],[class="row"]');
+        for(var i = adList.length - 1; i >= 0; i--){
+            adList[i].remove();
+        }
+    }
 
     function javbusStyle(){
         var styleElement = document.createElement('style');
@@ -41,6 +48,7 @@
         if (document.getElementsByClassName('row movie')){
             javbusStyle();
             javbusExpandThumbnail();
+            javbusRemoveAds();
         }
     }
 })();
