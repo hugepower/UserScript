@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         大圣盘
 // @namespace    http://tampermonkey.net/
-// @version      1.1
+// @version      1.2
 // @description  跳过大圣盘的扫码关注微信公众号，直接访问资源页面。
 // @author       hugepower
 // @match        https://www.dashengpan.com/detail/*
@@ -33,9 +33,9 @@
         // 如果页面上存在资源的提取码
         if(document.getElementsByClassName('meta-item copy-item').length>0){
             // 获取提取码
-            var data = document.getElementsByClassName('meta-item copy-item')[0].innerText.match(/(?<=提取密码 )(.+?)(?= 点击复制)/g)[0];
+            var pwd = document.getElementsByClassName('meta-item copy-item')[0].innerText.match(/(?<=提取密码 )(.+?)(?= 点击复制)/g)[0];
             // 将提取码拷贝到剪贴板
-            pwd = GM_setClipboard(data);
+            GM_setClipboard(pwd);
         }
         // 获取网盘资源链接
         var url = document.documentElement.outerHTML.match(/https:\\u002F\\u002Fpan.baidu.com(.+?)(?=")/g)[0].replace(/\\u002F/g,'/');
