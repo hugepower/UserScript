@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         大圣盘
 // @namespace    http://tampermonkey.net/
-// @version      1.3
+// @version      1.4
 // @description  跳过大圣盘的扫码关注微信公众号，直接访问资源页面。
 // @author       hugepower
 // @match        https://www.dashengpan.com/detail/*
@@ -31,12 +31,18 @@
             openDashengpan();
         }
     }
+    //解除【微信扫码关注公众号解锁资源】的限制
     function openDashengpan(){
-        if(document.getElementsByClassName("resource-item-wrap valid").length>0){
+        var resource_item = document.querySelectorAll('[class="resource-item-wrap valid"]');
+        if(resource_item.length>0){
             var items = document.documentElement.outerHTML.match(/(?<=res=)(.+?)(?=;)/g);
             for (let index = 0; index < items.length; index++) {
-                const id = items[index].match(/(?<=id:")(.+?)(?=")/)[0];
-                document.getElementsByClassName('resource-title')[index].getElementsByTagName('a')[0].href="https://www.dashengpan.com/detail/"+id;
+                try {
+                    const id = items[index].match(/(?<=id:")(.+?)(?=")/)[0];
+                    document.getElementsByClassName('resource-title')[index].getElementsByTagName('a')[0].href="https://www.dashengpan.com/detail/"+id;
+                } catch (error) {
+                    console.log(items[index]);
+                }
             }
         }
     }
