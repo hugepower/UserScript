@@ -1,11 +1,11 @@
 // ==UserScript==
 // @name         大圣盘
 // @namespace    http://tampermonkey.net/
-// @version      1.2
+// @version      1.3
 // @description  跳过大圣盘的扫码关注微信公众号，直接访问资源页面。
 // @author       hugepower
 // @match        https://www.dashengpan.com/detail/*
-// @match        https://www.dashengpan.com
+// @match        https://www.dashengpan.com/search?keyword=*
 // @grant        GM_setClipboard
 // @updateURL    https://github.com/hugepower/UserScript/blob/master/dashengpan.user.js
 
@@ -26,6 +26,18 @@
         // 如果当前页面是目标页面
         if(window.location.href.indexOf("detail")>-1){
             dashengpanMain();
+        }
+        if(window.location.href.indexOf("search?keyword")>-1){
+            openDashengpan();
+        }
+    }
+    function openDashengpan(){
+        if(document.getElementsByClassName("resource-item-wrap valid").length>0){
+            var items = document.documentElement.outerHTML.match(/(?<=res=)(.+?)(?=;)/g);
+            for (let index = 0; index < items.length; index++) {
+                const id = items[index].match(/(?<=id:")(.+?)(?=")/)[0];
+                document.getElementsByClassName('resource-title')[index].getElementsByTagName('a')[0].href="https://www.dashengpan.com/detail/"+id;
+            }
         }
     }
 
